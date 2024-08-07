@@ -1,0 +1,25 @@
+
+.button{
+    border: 2px solid blue;
+    color:white
+}
+
+.title{
+    padding-top: 20px;
+}
+
+h2,h4{
+    padding: 20px;
+}
+
+button{
+    border-radius: 15px;
+}
+
+.nav{
+    position:absolute;
+    top:230px;
+    width:90%;
+
+}
+

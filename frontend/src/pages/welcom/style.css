@@ -1,0 +1,48 @@
+.bla{
+    background-color: rgb(235, 229, 229);
+    height: 600px;
+    width:1200px;
+    color:black;
+}
+
+.google{
+    position: absolute;
+    left:180px !important;
+    top:350px !important;
+}
+
+.submit-btn {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    background-color: #472dbb;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    position: absolute;
+    left:260px;
+    bottom:-1px;
+  }
+
+  .submit-btn:hover {
+    background-color: #4565a0;
+  }
+
+.header{
+    width:40%;
+    height:250px;
+    position: absolute;
+    top:80px;
+    left:180px;
+}
+
+.words{
+    position: absolute;
+    top:280px;
+    left:180px;
+    width:500px;
+    text-align: left;
+    font-weight: 600;
+}
+
