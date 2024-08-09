@@ -170,3 +170,5 @@ app.use("/api",google)
 app.listen(port,()=>{
     console.log(`app listening on port ${port}`)
 })
+
+module.exports=app
