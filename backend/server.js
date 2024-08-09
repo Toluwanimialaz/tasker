@@ -29,7 +29,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 app.use(flash())
 app.use(session({
-    store: mongoStore.create({ mongoUrl:process.env.MONGO_URL}),
+    store: mongoStore.create({ mongoUrl:process.env.MONGODB_URI}),
     secret:process.env.SESSION_SECRET,
     resave:false,
     saveUninitialized:false,
