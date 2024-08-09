@@ -1,6 +1,6 @@
 const mongoose=require("mongoose");
 const { required } = require("nodemon/lib/config");
-const connection=mongoose.connect(process.env.MONGO_URL)
+const connection=mongoose.connect(process.env.MONGODB_URI)
 
 connection.then(()=>{
     console.log("connection successful")
