@@ -46,6 +46,10 @@ initializePassport(
     async(username)=>await collection.findOne({name:username})
 )
 
+app.get("/",(req,res)=>{
+    res.status(200).json({"working":"success"})
+})
+
 app.get("/api",(req,res)=>{
     if(req.isAuthenticated()){
         res.json({names:req.user.name})
