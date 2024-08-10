@@ -22,7 +22,7 @@ const {bcrypt,bcryptVerify}=require('hash-wasm');
 const { Collection } = require('mongoose');
 
 
-
+app.set('views', pathh.join(__dirname, 'views'));
 app.set("view engine","ejs")
 app.use(express.static("public"))
 app.use(express.json())
