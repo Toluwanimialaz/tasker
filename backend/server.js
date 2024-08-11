@@ -121,7 +121,7 @@ app.post("/signup",notAuthenticated,async(req,res)=>{
         console.log(user.password)
         const userData=await collection.insertMany(user)
         console.log(userData)
-        res.redirect('https://tasker-backend-mu.vercel.app/login')
+        res.redirect('https://tasker-client-beige.vercel.app/login')
     }
 })
 
@@ -144,7 +144,7 @@ function notAuthenticated(req,res,next){
 
 app.post("/login",notAuthenticated,passport.authenticate('local',{
     successRedirect:`${process.env.REACT_URL}/home`,
-    failureRedirect:`${reactURL}/login`,
+    failureRedirect:'https://tasker-client-beige.vercel.app/login',
     failureFlash:true
 }))
 
