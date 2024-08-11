@@ -121,7 +121,7 @@ app.post("/signup",notAuthenticated,async(req,res)=>{
         console.log(user.password)
         const userData=await collection.insertMany(user)
         console.log(userData)
-        res.redirect(`${reactURL}/login`)
+        res.redirect('https://tasker-backend-mu.vercel.app/login')
     }
 })
 
