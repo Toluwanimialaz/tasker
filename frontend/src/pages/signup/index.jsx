@@ -8,7 +8,7 @@ function Signup(){
         <>
             <div class="form-container">
                 <h2>SignUp</h2>
-                <form action={`${apiURL}/signup`} method="post">
+                <form action={`${apiURL}/signup`} method="POST">
                     <div className="form-group">
                         <label for="username">Username:</label>
                         <input type="text" id="username" name="username" placeholder="Enter your username" required autocomplete="off"/>

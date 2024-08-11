@@ -30,11 +30,11 @@ function App() {
       <Routes>
           <Route path='/' element={<Welcom/>}/>
           <Route path='/signup' element={<Signup/>}/>
+          <Route path='/login'element={<Login/>}/>
           <Route path='/home'>
             <Route index element={<Home/>}/>
             <Route path="task" element={<Task/>}/>
           </Route>
-          <Route path='/login'element={<Login/>}/>
           <Route path='*' element={<NotFound/>}/>
       </Routes>
     </>

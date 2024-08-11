@@ -8,7 +8,7 @@ function Login(){
         <>
             <div class="form-container">
                 <h2>Login</h2>
-                <form action={`${apiURL}/login`} method="post">
+                <form action={`${apiURL}/login`} method="POST">
                     <div className="form-group">
                         <label for="username">Username:</label>
                         <input type="text" id="username" name="username" placeholder="Enter your username" required autocomplete="off"/>
