@@ -143,7 +143,7 @@ function notAuthenticated(req,res,next){
 
 
 app.post("/login",notAuthenticated,passport.authenticate('local',{
-    successRedirect:`${process.env.REACT_URL}/home`,
+    successRedirect:'https://tasker-client-beige.vercel.app/home',
     failureRedirect:'https://tasker-client-beige.vercel.app/login',
     failureFlash:true
 }))
