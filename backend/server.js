@@ -2,7 +2,7 @@ if(process.env.NODE_ENV!=="production"){
     console.log("ready to go in testing")
     require('dotenv').config()
 }
-
+const reactURL=process.env.REACT_URL
 
 const bodyParser=require('body-parser')
 const express= require('express');
@@ -121,7 +121,7 @@ app.post("/signup",notAuthenticated,async(req,res)=>{
         console.log(user.password)
         const userData=await collection.insertMany(user)
         console.log(userData)
-        res.redirect("/login")
+        res.redirect(`${reactURL}/login`)
     }
 })
 
@@ -129,7 +129,7 @@ function auhenticated(req,res,next){
     if(req.isAuthenticated()){
         next()
     }else{
-        res.redirect('/login')
+        res.redirect(`${reactURL}/login`)
     }
 }
 
@@ -144,7 +144,7 @@ function notAuthenticated(req,res,next){
 
 app.post("/login",notAuthenticated,passport.authenticate('local',{
     successRedirect:`${process.env.REACT_URL}/home`,
-    failureRedirect:"/login",
+    failureRedirect:`${reactURL}/login`,
     failureFlash:true
 }))
 
@@ -153,7 +153,7 @@ app.delete("/logout",(req,res)=>{
         if(err){
             return next(err)
         }else{
-            res.redirect('/login')
+            res.redirect(`${reactURL}/login`)
         }
     })
 })
