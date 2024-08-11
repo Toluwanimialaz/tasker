@@ -80,7 +80,7 @@ function Home(){
             if(auther==="false"){
                 setTruth(res.data.status)
                 console.log("navigating to login page")
-                navigate(`${apiURL}/login`)
+                navigate(`/login`)
             }
         })
         .catch(err=>console.log(err))

@@ -17,9 +17,9 @@ function Welcom(){
                     <Link to={`${apiURL}/api/auth/google`}>
                         <GoogleButtonn className='signUp'/>
                     </Link>
-                    <form action={`${apiURL}/signup`} method='GET'>
+                    <Link to="/signup">
                         <button className='submit-btn' type='submit'>Sign up</button>
-                    </form>
+                    </Link>
                 </div>
             </div>
             <Lottie onComplete={()=>{
