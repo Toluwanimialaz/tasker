@@ -47,7 +47,7 @@ initializePassport(
 )
 
 app.get("/",(req,res)=>{
-    res.status(200).json({"working":"success"})
+    res.status(200).json({"working":"successss"})
 })
 
 app.get("/api",(req,res)=>{
