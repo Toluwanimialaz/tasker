@@ -1,6 +1,7 @@
 import React from 'react'
 
 function Navbar(props){
+    const apiURL=import.meta.env.VITE_API_URL
     return(
         <div>
             <div className='container'>
@@ -39,7 +40,7 @@ function Navbar(props){
                         <a className="nav-link" href="#"></a>
                     </li>
                     <li className="nav-item">
-                        <form action="http://localhost:3050/logout?_method=DELETE" method="POST">
+                        <form action={`${apiURL}/logout?_method=DELETE`}  method="POST">
                             <button type="submit">Log out</button>
                         </form>
                     </li>
