@@ -3,6 +3,7 @@ if(process.env.NODE_ENV!=="production"){
     require('dotenv').config()
 }
 const reactURL=process.env.REACT_URL
+const cors=require('cors')
 
 const bodyParser=require('body-parser')
 const express= require('express');
@@ -20,6 +21,15 @@ const mongoStore=require('connect-mongo');
 
 const {bcrypt,bcryptVerify}=require('hash-wasm');
 const { Collection } = require('mongoose');
+const corsOptions = {
+    origin: 'https://tasker-client-beige.vercel.app', // Only allow requests from this domain
+    methods: 'GET,POST,DELETE', // Only allow specific methods
+    allowedHeaders: ['Content-Type', 'Authorization'], // Allow specific headers
+    credentials: true, // Allow cookies to be sent
+    optionsSuccessStatus: 204 // Some legacy browsers (IE11, various SmartTVs) choke on 204
+  };
+  
+app.use(cors(corsOptions));
 
 
 app.set('views', pathh.join(__dirname, 'views'));
