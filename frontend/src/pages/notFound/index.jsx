@@ -3,7 +3,7 @@ import React from "react";
 export default function not(){
     return(
         <>
-         <h1>This page does not exist</h1>
+         <h1>This page does Not exist</h1>
         </>
     )
 }
