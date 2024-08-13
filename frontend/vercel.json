@@ -2,7 +2,11 @@
     "rewrites": [
       {
         "source": "/api/(.*)",
-        "destination": "https://tasker-backend-mu.vercel.app/api/$1"
+        "destination": "https://tasker-backend-mu.vercel.app/$1"
+      },
+      {
+        "source": "/(.*)",
+        "destination": "/"
       }
     ]
 }
