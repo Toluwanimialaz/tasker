@@ -23,7 +23,7 @@ function Task(){
     useEffect(()=>{
         async function get(){
             try{
-                const res=await axios.get("/api/form/task")
+                const res=await axios.get("https://tasker-backend-mu.vercel.app/api/form/task")
                 console.log(res.data)
                 console.log(res.data.current)
                 console.log(res.data.expired)
@@ -56,7 +56,7 @@ function Task(){
         const thatTask=myTask.innerHTML;
      
         console.log(thatTask)
-        const response=await fetch("/api/form/task",{
+        const response=await fetch("https://tasker-backend-mu.vercel.app/api/form/task",{
             method:"POST",
             headers:{
                 'Content-Type': 'application/json'
