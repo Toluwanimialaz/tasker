@@ -41,7 +41,7 @@ function Home(){
         const dataa=new FormData(w)
         const textData=new URLSearchParams(dataa)
         console.log(...dataa)
-        const response=await fetch('https://tasker-client-beige.vercel.app/api/form',{
+        const response=await fetch('https://tasker-backend-mu.vercel.app/api/form',{
             method:"POST",
             headers:{
                 'Content-Type': 'application/json'
@@ -70,7 +70,7 @@ function Home(){
 
 
     useEffect(()=>{
-        axios.get('https://tasker-client-beige.vercel.app/api')
+        axios.get('https://tasker-backend-mu.vercel.app/api')
         .then(res=>{
             console.log(res)
             setStuff(res.data)
