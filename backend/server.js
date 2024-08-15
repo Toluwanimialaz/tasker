@@ -21,7 +21,14 @@ const mongoStore=require('connect-mongo');
 
 const {bcrypt,bcryptVerify}=require('hash-wasm');
 const { Collection } = require('mongoose');
-
+const corsOptions = {
+    origin: '*', // Only allow requests from this domain
+    methods: 'GET,POST', // Only allow specific methods
+    credentials: true, // Allow cookies to be sent
+    optionsSuccessStatus: 204 // Some legacy browsers (IE11, various SmartTVs) choke on 204
+  };
+  
+app.use(cors(corsOptions));
 
 
 app.set('views', pathh.join(__dirname, 'views'));
@@ -170,6 +177,7 @@ app.use("/api/form",task)
 app.use("/request",request)
 app.use("/oauth",oauth)
 app.use("/api",google)
+
 
 
 
