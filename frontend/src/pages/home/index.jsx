@@ -84,7 +84,7 @@ function Home(){
             }
         })
         .catch(err=>console.log(err))
-    },[])
+    },[truth])
 
     return(
         <div  className='background'>
