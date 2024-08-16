@@ -23,7 +23,7 @@ const {bcrypt,bcryptVerify}=require('hash-wasm');
 const { Collection } = require('mongoose');
 
 const corsOptions = {
-    origin: '*', // Only allow requests from this domain
+    origin: 'https://tasker-client-beige.vercel.app/home', // Only allow requests from this domain
     methods: 'GET,POST,DELETE', // Only allow specific methods
     credentials: true, // Allow cookies to be sent
     optionsSuccessStatus: 204 // Some legacy browsers (IE11, various SmartTVs) choke on 204
