@@ -32,6 +32,14 @@ const corsOptions = {
   
 app.use(cors(corsOptions));
 
+app.options('*', (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', 'https://tasker-client-beige.vercel.app');
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+    res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.sendStatus(200);
+  });
+
 
 app.set('views', pathh.join(__dirname, 'views'));
 app.set("view engine","ejs")
@@ -62,8 +70,6 @@ app.get("/",(req,res)=>{
 })
 
 app.get("/api",(req,res)=>{
-    res.header("Access-Control-Allow-Origin","https://tasker-client-beige.vercel.app");
-    res.setHeader("Access-Control-Allow-Credentials", "true");
     if(req.isAuthenticated()){
         res.json({names:req.user.name})
     }else{
