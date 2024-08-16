@@ -62,6 +62,8 @@ app.get("/",(req,res)=>{
 })
 
 app.get("/api",(req,res)=>{
+    res.header("Access-Control-Allow-Origin","https://tasker-client-beige.vercel.app");
+    res.setHeader("Access-Control-Allow-Credentials", "true");
     if(req.isAuthenticated()){
         res.json({names:req.user.name})
     }else{
