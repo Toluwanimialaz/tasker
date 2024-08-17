@@ -71,7 +71,7 @@ function Home(){
 
     useEffect(()=>{
         axios.get('https://tasker-backend-mu.vercel.app/api',{
-            withCredentials:true
+            withCredentials:false
         })
         .then(res=>{
             console.log(res)
