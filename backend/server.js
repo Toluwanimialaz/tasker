@@ -3,7 +3,7 @@ if(process.env.NODE_ENV!=="production"){
     require('dotenv').config()
 }
 const reactURL=process.env.REACT_URL
-const cors=require('cors')
+
 
 const bodyParser=require('body-parser')
 const express= require('express');
@@ -21,23 +21,6 @@ const mongoStore=require('connect-mongo');
 
 const {bcrypt,bcryptVerify}=require('hash-wasm');
 const { Collection } = require('mongoose');
-
-const corsOptions = {
-    origin: 'https://tasker-client-beige.vercel.app', // Only allow requests from this domain
-    methods: 'GET,POST,DELETE', // Only allow specific methods
-    allowedHeaders: ['Content-Type', 'Authorization'], // Allow specific headers
-    credentials: true, // Allow cookies to be sent
-    optionsSuccessStatus: 204 // Some legacy browsers (IE11, various SmartTVs) choke on 204
-};
-
-app.options('*', (req, res) => {
-    res.setHeader('Access-Control-Allow-Origin', 'https://tasker-client-beige.vercel.app/');
-    res.setHeader('Access-Control-Allow-Credentials', 'true');
-    res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    res.sendStatus(200);
-});
-
 
 
 
@@ -72,14 +55,7 @@ app.get("/",(req,res)=>{
 })
 
 app.get("/api",(req,res)=>{
-    if(req.isAuthenticated()){
-        res.json({names:req.user.name})
-    }else{
-        res.auth="false";
-        const truth=res.auth;
-        console.log(truth)
-        res.json({status:truth})
-    }
+    res.json({names:req.user.name})
 })
 
 app.post("/api/form",async(req,res)=>{
@@ -189,6 +165,9 @@ app.use("/api/form",task)
 app.use("/request",request)
 app.use("/oauth",oauth)
 app.use("/api",google)
+
+
+app.listen(port)
 
 
 
