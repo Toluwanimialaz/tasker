@@ -30,14 +30,6 @@ const corsOptions = {
     optionsSuccessStatus: 204 // Some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 
-app.options('*', (req, res) => {
-    res.setHeader('Access-Control-Allow-Origin', 'https://tasker-client-beige.vercel.app/');
-    res.setHeader('Access-Control-Allow-Credentials', 'true');
-    res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    res.sendStatus(200);
-});
-
 
 
 
