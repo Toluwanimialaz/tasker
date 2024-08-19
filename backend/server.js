@@ -28,9 +28,7 @@ const corsOptions = {
     allowedHeaders: ['Content-Type', 'Authorization'], // Allow specific headers
     credentials: true, // Allow cookies to be sent
     optionsSuccessStatus: 204 // Some legacy browsers (IE11, various SmartTVs) choke on 204
-  };
-  
-app.use(cors());
+};
 
 app.options('*', (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', 'https://tasker-client-beige.vercel.app/');
@@ -55,7 +53,7 @@ app.use(session({
     resave:false,
     saveUninitialized:false,
     cookie: {
-        secure: false, // Ensure this is false if not using HTTPS
+        secure: true, // Ensure this is false if not using HTTPS
         sameSite: 'None', // Important for cross-site cookies
         httpOnly: true,
     }
