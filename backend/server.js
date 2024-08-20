@@ -52,7 +52,12 @@ const corsOptions = {
     optionsSuccessStatus: 204 // Some legacy browsers (IE11, various SmartTVs) choke on 204
 };
   
-app.use(cors(corsOptions));
+app.use(cors({
+    allowedHeaders:'Content-Type,Authorization',
+    allowMethods:'GET,POST',
+    origin:'https://tasker-client-beige.vercel.app',
+    credentials:'true'
+}));
 
 app.use( (req,res,next) => {
     res.setHeader('Access-Control-Allow-Origin', 'https://tasker-client-beige.vercel.app');
@@ -60,6 +65,7 @@ app.use( (req,res,next) => {
     res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With, X-HTTP-Method-Override, Accept');
     res.sendStatus(200);
+    next()
 });
 
 
