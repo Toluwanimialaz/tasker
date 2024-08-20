@@ -4,7 +4,7 @@ if(process.env.NODE_ENV!=="production"){
 }
 const reactURL=process.env.REACT_URL
 
-
+const cors=require('cors')
 const bodyParser=require('body-parser')
 const express= require('express');
 const pathh=require('path')
