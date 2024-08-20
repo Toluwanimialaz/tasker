@@ -45,7 +45,7 @@ app.use(methodOverride('_method'))
 app.use(bodyParser.json())
 
 const corsOptions = {
-    origin: 'https://tasker-client-beige.vercel.app/', // Only allow requests from this domain
+    origin: 'https://tasker-client-beige.vercel.app', // Only allow requests from this domain
     methods: 'GET,POST', // Only allow specific methods
     allowedHeaders: ['Content-Type', 'Authorization'], // Allow specific headers
     credentials: true, // Allow cookies to be sent
@@ -55,7 +55,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.options('*', (req, res) => {
-    res.setHeader('Access-Control-Allow-Origin', 'https://tasker-client-beige.vercel.app/');
+    res.setHeader('Access-Control-Allow-Origin', 'https://tasker-client-beige.vercel.app');
     res.setHeader('Access-Control-Allow-Credentials', 'true');
     res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
