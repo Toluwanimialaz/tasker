@@ -44,7 +44,7 @@ app.use(passport.session())
 app.use(methodOverride('_method'))
 app.use(bodyParser.json())
 
-const corsOptions = {
+const corsOptionss = {
     origin: 'https://tasker-client-beige.vercel.app', // Only allow requests from this domain
     methods: 'GET,POST,DELETE', // Only allow specific methods
     allowedHeaders: ['Content-Type', 'Authorization','X-Requested-With'], // Allow specific headers
@@ -66,7 +66,7 @@ app.get("/",(req,res)=>{
     res.status(200).json({"working":"successs"})
 })
 
-app.get("/api",auhenticated,cors(corsOptions),(req,res)=>{
+app.get("/api",auhenticated,cors(corsOptionss),(req,res)=>{
     res.json({names:req.user.name})
 })
 
