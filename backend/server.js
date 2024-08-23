@@ -46,13 +46,10 @@ app.use(bodyParser.json())
 
 const corsOptionss = {
     origin: 'https://tasker-client-beige.vercel.app', // Only allow requests from this domain
-    methods: 'GET,POST,DELETE', // Only allow specific methods
-    allowedHeaders: ['Content-Type', 'Authorization','X-Requested-With'], // Allow specific headers
     credentials: true, // Allow cookies to be sent
-    optionsSuccessStatus: 204 // Some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 
-app.use(cors())
+app.use(cors(corsOptionss))
   
 
 
