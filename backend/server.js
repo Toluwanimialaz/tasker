@@ -66,7 +66,7 @@ app.get("/",(req,res)=>{
 })
 
 app.get("/api",auhenticated,(req,res)=>{
-    res.header("Access-Control-Origin-Allow-Origin","https://tasker-client-beige.vercel.app");
+    res.header("Access-Control-Allow-Origin","https://tasker-client-beige.vercel.app");
     res.json({names:req.user.name})
 })
 
