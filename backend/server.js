@@ -66,7 +66,7 @@ app.get("/",(req,res)=>{
     res.status(200).json({"working":"successs"})
 })
 
-app.get("/api",auhenticated,cors(corsOptionss),(req,res)=>{
+app.get("/api",auhenticated,(req,res)=>{
     res.json({names:req.user.name})
 })
 
