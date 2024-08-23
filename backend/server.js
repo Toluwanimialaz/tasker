@@ -46,7 +46,10 @@ app.use(bodyParser.json())
 
 const corsOptionss = {
     origin: 'https://tasker-client-beige.vercel.app', // Only allow requests from this domain
+    methods: 'GET,POST,DELETE', // Only allow specific methods
+    allowedHeaders: ['Content-Type', 'Authorization','X-Requested-With'], // Allow specific headers
     credentials: true, // Allow cookies to be sent
+    optionsSuccessStatus: 204 // Some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 
 app.use(cors(corsOptionss))
@@ -62,11 +65,14 @@ initializePassport(
 )
 
 app.get("/",(req,res)=>{
+    res.header("Access-Control-Allow-Origin",'https://tasker-client-beige.vercel.app');
+    res.header("Access-Control-Allow-Methods",'GET,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.header('Access-Control-Allow-Credentials', 'true');
     res.status(200).json({"working":"successs"})
 })
 
 app.get("/api",auhenticated,(req,res)=>{
-    res.header("Access-Control-Allow-Origin","https://tasker-client-beige.vercel.app");
     res.json({names:req.user.name})
 })
 
