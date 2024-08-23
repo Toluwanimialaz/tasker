@@ -73,6 +73,10 @@ app.get("/",(req,res)=>{
 })
 
 app.get("/api",auhenticated,(req,res)=>{
+    res.header("Access-Control-Allow-Origin",'https://tasker-client-beige.vercel.app');
+    res.header("Access-Control-Allow-Methods",'GET,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.header('Access-Control-Allow-Credentials', 'true');
     res.json({names:req.user.name})
 })
 
