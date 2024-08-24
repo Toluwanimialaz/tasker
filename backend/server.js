@@ -17,6 +17,7 @@ const corsOptions = {
     methods: 'GET,POST,DELETE', // Only allow specific methods
     allowedHeaders: ['Content-Type', 'Authorization','X-Requested-With'], // Allow specific headers
     credentials: true, // Allow cookies to be sent
+    optionsSuccessStatus: 200
 };
 
 const bodyParser=require('body-parser')
@@ -57,7 +58,7 @@ app.use(passport.session())
 app.use(methodOverride('_method'))
 app.use(bodyParser.json())
 
-app.options('/api', cors(corsOptions));
+app.options('*', cors(corsOptions));
 
   
 
