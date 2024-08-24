@@ -6,7 +6,7 @@ const reactURL=process.env.REACT_URL
 const allowedOrigins=['https://tasker-client-beige.vercel.app/','https://tasker-client-beige.vercel.app/login','https://tasker-client-beige.vercel.app/home','https://tasker-client-beige.vercel.app']
 
 const cors=require('cors')
-const corsOptionsss = {
+const corsOptions = {
     origin: function (origin, callback) {
         if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
           callback(null, true);
@@ -36,7 +36,7 @@ const {bcrypt,bcryptVerify}=require('hash-wasm');
 const { Collection } = require('mongoose');
 
 
-app.use(cors(corsOptionsss))
+app.use(cors(corsOptions))
 app.set('views', pathh.join(__dirname, 'views'));
 app.set("view engine","ejs")
 app.use(express.static("public"))
@@ -56,6 +56,8 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.use(methodOverride('_method'))
 app.use(bodyParser.json())
+
+app.options('/api', cors(corsOptions));
 
   
 
