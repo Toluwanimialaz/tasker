@@ -13,7 +13,6 @@ const corsOptionsss = {
     optionsSuccessStatus: 204 // Some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 
-app.use(cors(corsOptionsss))
 const bodyParser=require('body-parser')
 const express= require('express');
 const pathh=require('path')
@@ -25,7 +24,6 @@ const passport=require('passport');
 const flash=require('express-flash')
 const session=require('express-session')
 const methodOverride=require('method-override')
-const moment=require('moment')
 const mongoStore=require('connect-mongo');
 
 const {bcrypt,bcryptVerify}=require('hash-wasm');
@@ -35,6 +33,7 @@ const { Collection } = require('mongoose');
 
 app.set('views', pathh.join(__dirname, 'views'));
 app.set("view engine","ejs")
+app.use(cors(corsOptionsss))
 app.use(express.static("public"))
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
