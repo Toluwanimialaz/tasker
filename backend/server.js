@@ -5,7 +5,7 @@ if(process.env.NODE_ENV!=="production"){
 const reactURL=process.env.REACT_URL
 
 const cors=require('cors')
-const corsOptionss = {
+const corsOptionsss = {
     origin: 'https://tasker-client-beige.vercel.app', // Only allow requests from this domain
     methods: 'GET,POST,DELETE', // Only allow specific methods
     allowedHeaders: ['Content-Type', 'Authorization','X-Requested-With'], // Allow specific headers
@@ -13,7 +13,7 @@ const corsOptionss = {
     optionsSuccessStatus: 204 // Some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 
-app.use(cors(corsOptionss))
+app.use(cors(corsOptionsss))
 const bodyParser=require('body-parser')
 const express= require('express');
 const pathh=require('path')
