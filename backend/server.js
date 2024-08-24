@@ -3,7 +3,7 @@ if(process.env.NODE_ENV!=="production"){
     require('dotenv').config()
 }
 const reactURL=process.env.REACT_URL
-const allowedOrigins=['https://tasker-client-beige.vercel.app/','https://tasker-client-beige.vercel.app/login','https://tasker-client-beige.vercel.app/home','https://tasker-client-beige.vercel.app']
+const allowedOrigins=['https://tasker-client-beige.vercel.app','https://tasker-client-beige.vercel.app/login','https://tasker-client-beige.vercel.app/home']
 
 const cors=require('cors')
 const corsOptions = {
@@ -36,7 +36,7 @@ const mongoStore=require('connect-mongo');
 const {bcrypt,bcryptVerify}=require('hash-wasm');
 const { Collection } = require('mongoose');
 
-
+app.use(bodyParser.json())
 app.use(cors(corsOptions))
 app.set('views', pathh.join(__dirname, 'views'));
 app.set("view engine","ejs")
@@ -56,9 +56,15 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 app.use(methodOverride('_method'))
-app.use(bodyParser.json())
+
 
 app.options('*', cors(corsOptions));
+
+app.use((req, res, next) => {
+    console.log('Origin:', req.headers.origin);
+    console.log('Headers:', req.headers);
+    next();
+});
 
   
 
@@ -147,7 +153,7 @@ function auhenticated(req,res,next){
     if(req.isAuthenticated()){
         next()
     }else{
-        res.redirect(`${reactURL}/login`)
+        return res.redirect(`${reactURL}/login`)
     }
 }
 
