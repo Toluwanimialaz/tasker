@@ -3,14 +3,20 @@ if(process.env.NODE_ENV!=="production"){
     require('dotenv').config()
 }
 const reactURL=process.env.REACT_URL
+const allowedOrigins=['https://tasker-client-beige.vercel.app/','https://tasker-client-beige.vercel.app/login','https://tasker-client-beige.vercel.app/home','https://tasker-client-beige.vercel.app']
 
 const cors=require('cors')
 const corsOptionsss = {
-    origin: 'https://tasker-client-beige.vercel.app', // Only allow requests from this domain
+    origin: function (origin, callback) {
+        if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+          callback(null, true);
+        } else {
+          callback(new Error('Not allowed by CORS'));
+        }
+    },
     methods: 'GET,POST,DELETE', // Only allow specific methods
     allowedHeaders: ['Content-Type', 'Authorization','X-Requested-With'], // Allow specific headers
     credentials: true, // Allow cookies to be sent
-    optionsSuccessStatus: 204 // Some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 
 const bodyParser=require('body-parser')
@@ -30,10 +36,9 @@ const {bcrypt,bcryptVerify}=require('hash-wasm');
 const { Collection } = require('mongoose');
 
 
-
+app.use(cors(corsOptionsss))
 app.set('views', pathh.join(__dirname, 'views'));
 app.set("view engine","ejs")
-app.use(cors(corsOptionsss))
 app.use(express.static("public"))
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
@@ -64,14 +69,10 @@ initializePassport(
 )
 
 app.get("/",(req,res)=>{
-    res.header("Access-Control-Allow-Origin",'https://tasker-client-beige.vercel.app');
-    res.header("Access-Control-Allow-Methods",'GET,POST,DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    res.header('Access-Control-Allow-Credentials', 'true');
     res.status(200).json({"working":"successs"})
 })
 
-app.get("/api",auhenticated,(req,res)=>{
+app.get("/api",(req,res)=>{
     res.json({names:req.user.name})
 })
 
