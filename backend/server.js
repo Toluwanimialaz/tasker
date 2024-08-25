@@ -50,7 +50,9 @@ app.use(session({
     resave:false,
     saveUninitialized:false,
     cookie: {
-       maxAge:1000*60*60
+       maxAge:1000*60*60*5,
+       secure: true, // Ensure this is true if you're using HTTPS
+       sameSite: 'None' // Allow cross-origin cookies
     }
 }))
 app.use(passport.initialize())
