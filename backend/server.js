@@ -94,12 +94,6 @@ function notAuthenticated(req,res,next){
     }
 }
 
-function logHeaders(req, res, next) {
-    console.log('Request Headers:', req.headers);
-    next(); // Pass control to the next middleware function
-}
-
-app.use(logHeaders)
 app.get("/",(req,res)=>{
     res.status(200).json({"working":"successs"})
 })
