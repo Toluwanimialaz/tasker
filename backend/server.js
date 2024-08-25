@@ -2,10 +2,25 @@ if(process.env.NODE_ENV!=="production"){
     console.log("ready to go in testing")
     require('dotenv').config()
 }
+const app=express();
 const reactURL=process.env.REACT_URL
 const allowedOrigins=['https://tasker-client-beige.vercel.app','https://tasker-client-beige.vercel.app/login','https://tasker-client-beige.vercel.app/home']
 
-const cors=require('cors')
+const bodyParser=require('body-parser')
+const express= require('express');
+const pathh=require('path')
+const collection=require('./config')
+const port=3050;
+const initializePassport=require('./config-passport');
+const passport=require('passport');
+const flash=require('express-flash')
+const session=require('express-session')
+const methodOverride=require('method-override')
+const mongoStore=require('connect-mongo');
+
+const {bcrypt,bcryptVerify}=require('hash-wasm');
+const { Collection } = require('mongoose');
+
 
 app.use((req, res, next) => {
     const origin = req.headers.origin;
@@ -18,21 +33,6 @@ app.use((req, res, next) => {
     next();
 });
 
-const bodyParser=require('body-parser')
-const express= require('express');
-const pathh=require('path')
-const collection=require('./config')
-const app=express();
-const port=3050;
-const initializePassport=require('./config-passport');
-const passport=require('passport');
-const flash=require('express-flash')
-const session=require('express-session')
-const methodOverride=require('method-override')
-const mongoStore=require('connect-mongo');
-
-const {bcrypt,bcryptVerify}=require('hash-wasm');
-const { Collection } = require('mongoose');
 
 app.use(bodyParser.json())
 app.set('views', pathh.join(__dirname, 'views'));
