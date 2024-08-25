@@ -2,14 +2,29 @@ if(process.env.NODE_ENV!=="production"){
     console.log("ready to go in testing")
     require('dotenv').config()
 }
-const app=express();
 const reactURL=process.env.REACT_URL
 const allowedOrigins=['https://tasker-client-beige.vercel.app','https://tasker-client-beige.vercel.app/login','https://tasker-client-beige.vercel.app/home']
+
+const cors=require('cors')
+const corsOptions = {
+    origin: function (origin, callback) {
+        if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+          callback(null, true);
+        } else {
+          callback(new Error('Not allowed by CORS'));
+        }
+    },
+    methods: 'GET,POST,DELETE,OPTIONS', // Only allow specific methods
+    allowedHeaders: ['Content-Type', 'Authorization','X-Requested-With'], // Allow specific headers
+    credentials: true, // Allow cookies to be sent
+    optionsSuccessStatus: 200
+};
 
 const bodyParser=require('body-parser')
 const express= require('express');
 const pathh=require('path')
 const collection=require('./config')
+const app=express();
 const port=3050;
 const initializePassport=require('./config-passport');
 const passport=require('passport');
@@ -21,20 +36,8 @@ const mongoStore=require('connect-mongo');
 const {bcrypt,bcryptVerify}=require('hash-wasm');
 const { Collection } = require('mongoose');
 
-
-app.use((req, res, next) => {
-    const origin = req.headers.origin;
-    if (allowedOrigins.includes(origin)) {
-        res.setHeader('Access-Control-Allow-Origin', origin);
-    }
-    res.setHeader('Access-Control-Allow-Credentials', 'true');
-    res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
-    res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
-    next();
-});
-
-
 app.use(bodyParser.json())
+app.use(cors(corsOptions))
 app.set('views', pathh.join(__dirname, 'views'));
 app.set("view engine","ejs")
 app.use(express.static("public"))
@@ -53,6 +56,8 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 app.use(methodOverride('_method'))
+
+
 
 
 app.use((req, res, next) => {
