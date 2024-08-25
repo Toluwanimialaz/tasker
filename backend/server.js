@@ -77,11 +77,37 @@ initializePassport(
     async(username)=>await collection.findOne({name:username})
 )
 
+function auhenticated(req,res,next){
+    if(req.isAuthenticated()){
+        console.log("User authenticated:", req.user);
+        next()
+    }else{
+        return res.redirect(`${reactURL}/login`)
+    }
+}
+
+function notAuthenticated(req,res,next){
+    if(req.isAuthenticated()){
+        return res.redirect(process.env.REACT_URL);
+    }else{
+        next()
+    }
+}
+
+function logHeaders(req, res, next) {
+    console.log('Request Headers:', req.headers);
+    next(); // Pass control to the next middleware function
+}
+
+app.use(logHeaders)
 app.get("/",(req,res)=>{
     res.status(200).json({"working":"successs"})
 })
 
-app.get("/api",(req,res)=>{
+app.get("/api",auhenticated,(req,res)=>{
+    if (!req.user) {
+        return res.status(401).json({ error: "User not authenticated" });
+    }
     res.json({names:req.user.name})
 })
 
@@ -149,21 +175,7 @@ app.post("/signup",notAuthenticated,async(req,res)=>{
     }
 })
 
-function auhenticated(req,res,next){
-    if(req.isAuthenticated()){
-        next()
-    }else{
-        return res.redirect(`${reactURL}/login`)
-    }
-}
 
-function notAuthenticated(req,res,next){
-    if(req.isAuthenticated()){
-        return res.redirect(process.env.REACT_URL);
-    }else{
-        next()
-    }
-}
 
 
 app.post("/login",notAuthenticated,passport.authenticate('local',{
