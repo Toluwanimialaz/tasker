@@ -66,6 +66,12 @@ app.use((req, res, next) => {
     next();
 });
 
+app.use((req, res, next) => {
+    res.on('finish', () => {
+        console.log('Responseess Headers:', res.getHeaders());
+    });
+    next();
+});
   
 
 
