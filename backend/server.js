@@ -6,19 +6,17 @@ const reactURL=process.env.REACT_URL
 const allowedOrigins=['https://tasker-client-beige.vercel.app','https://tasker-client-beige.vercel.app/login','https://tasker-client-beige.vercel.app/home']
 
 const cors=require('cors')
-const corsOptions = {
-    origin: function (origin, callback) {
-        if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-          callback(null, true);
-        } else {
-          callback(new Error('Not allowed by CORS'));
-        }
-    },
-    methods: 'GET,POST,DELETE', // Only allow specific methods
-    allowedHeaders: ['Content-Type', 'Authorization','X-Requested-With'], // Allow specific headers
-    credentials: true, // Allow cookies to be sent
-    optionsSuccessStatus: 200
-};
+
+app.use((req, res, next) => {
+    const origin = req.headers.origin;
+    if (allowedOrigins.includes(origin)) {
+        res.setHeader('Access-Control-Allow-Origin', origin);
+    }
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+    res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
+    res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
+    next();
+});
 
 const bodyParser=require('body-parser')
 const express= require('express');
@@ -57,8 +55,6 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.use(methodOverride('_method'))
 
-
-app.options('*', cors(corsOptions));
 
 app.use((req, res, next) => {
     console.log('Origin:', req.headers.origin);
