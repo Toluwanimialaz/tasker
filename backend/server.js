@@ -107,9 +107,6 @@ app.get("/",(req,res)=>{
 })
 
 app.get("/api",(req,res)=>{
-    if (!req.user) {
-        return res.status(401).json({ error: "User not authenticated" });
-    }
     res.json({names:req.user.name})
 })
 
