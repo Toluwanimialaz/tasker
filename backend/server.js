@@ -50,9 +50,10 @@ app.use(session({
     resave:false,
     saveUninitialized:false,
     cookie: {
-       maxAge:1000*60*60*5,
+       maxAge:1000*60*60,
        secure: true, // Ensure this is true if you're using HTTPS
-       sameSite: 'None' // Allow cross-origin cookies
+       sameSite: 'none', // Allow cross-origin cookies
+       domain: 'https://tasker-client-beige.vercel.app'
     }
 }))
 app.use(passport.initialize())
