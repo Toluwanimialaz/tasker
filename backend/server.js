@@ -75,6 +75,11 @@ app.use((req, res, next) => {
     next();
 });
   
+app.use((req, res, next) => {
+    console.log('Session ID:', req.sessionID);
+    console.log('User:', req.user);
+    next();
+});
 
 
 
@@ -107,7 +112,12 @@ app.get("/",(req,res)=>{
 })
 
 app.get("/api",(req,res)=>{
-    res.json({names:req.user.name})
+    try{
+        res.json({names:req.user.name})
+    }catch(error){
+        console.log(`error=${error}`)
+        res.staus(500).json({error:"internal sever error"})
+    }
 })
 
 app.post("/api/form",async(req,res)=>{
