@@ -51,9 +51,6 @@ app.use(session({
     saveUninitialized:false,
     cookie: {
        maxAge:1000*60*60,
-       secure: true, // Ensure this is true if you're using HTTPS
-       sameSite: 'none', // Allow cross-origin cookies
-       domain: 'https://tasker-client-beige.vercel.app'
     }
 }))
 app.use(passport.initialize())
@@ -117,7 +114,7 @@ app.get("/api",(req,res)=>{
         res.json({names:req.user.name})
     }catch(error){
         console.log(`error=${error}`)
-        res.staus(500).json({error:"internal sever error"})
+        res.status(500).json({error:"internalll severrr error"})
     }
 })
 
