@@ -70,7 +70,7 @@ function Home(){
 
 
     useEffect(()=>{
-        fetch('https://task-backend-7r94.onrender.com/api', {
+        fetch('https://task-backend-7r94.onrender.com', {
             method: 'GET',
             credentials: 'include', // Ensures cookies are sent in the request
             headers: {
