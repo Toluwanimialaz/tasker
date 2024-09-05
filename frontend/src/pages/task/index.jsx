@@ -23,7 +23,14 @@ function Task(){
     useEffect(()=>{
         async function get(){
             try{
-                const res=await axios.get("https://task-backend-7r94.onrender.com/api/form/task")
+                const data=await fetch("https://task-backend-7r94.onrender.com/api/form/task",{
+                    method: 'GET',
+                    credentials: 'include', // Ensures cookies are sent in the request
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                })
+                const res=await data.json()
                 console.log(res.data)
                 console.log(res.data.current)
                 console.log(res.data.expired)

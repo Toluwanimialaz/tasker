@@ -112,7 +112,7 @@ app.get("/",(req,res)=>{
     if(req.user){
         res.status(200).json({"existing":`${req.user} exits`,"working":"successs"}) 
     }else{
-        res.json({"existing":"user doesnt existt"})
+        res.json({"existing":"user doesnt exist"})
 
     }
 })
