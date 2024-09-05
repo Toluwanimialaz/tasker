@@ -109,7 +109,12 @@ function notAuthenticated(req,res,next){
 }
 
 app.get("/",(req,res)=>{
-    res.status(200).json({"working":"successs"})
+    if(req.user){
+        res.status(200).json({"existing":`${req.user} exits`,"working":"successs"}) 
+    }else{
+        res.json({"existing":"user doesnt exist"})
+
+    }
 })
 
 app.get("/api",(req,res)=>{
