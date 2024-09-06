@@ -80,15 +80,7 @@ function Home(){
         .then(data=>data.json())
         .then(res=>{
             console.log(res)
-            setStuff(res.data)
-            const auther=res.data.status
-            console.log(`truth=${truth}`)
-            console.log(auther)
-            if(auther==="false"){
-                setTruth(res.data.status)
-                console.log("navigating to login page")
-                navigate(`/login`)
-            }
+            setStuff(res)
         })
         .catch(err=>console.log(err))
     },[truth])
