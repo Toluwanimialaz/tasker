@@ -122,7 +122,7 @@ app.get("/api",(req,res)=>{
         res.json({names:req.user.name})
     }catch(error){
         console.log(`error=${error}`)
-        res.status(500).json({error:"internalll severrr error"})
+        res.status(500).json({error:"internall severr error"})
     }
 })
 

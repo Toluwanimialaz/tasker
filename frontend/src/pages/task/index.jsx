@@ -31,17 +31,17 @@ function Task(){
                     }
                 })
                 const res=await data.json()
-                console.log(res.data)
-                console.log(res.data.current)
-                console.log(res.data.expired)
-                const auth=res.data.status;
+                console.log(res)
+                console.log(res.current)
+                console.log(res.expired)
+                const auth=res.status;
                 setTask(()=>{
-                    return{...task,curTask:res.data.current,expTask:res.data.expired}
+                    return{...task,curTask:res.current,expTask:res.expired}
                 })
                 if(auth==="false"){
                     setStatus(auth)
                     console.log("navigating to login page")
-                    navigate(`${apiURL}/login`)
+                    navigate('/login')
                 }
             }catch(error){
                 console.log(`error=${error}`)

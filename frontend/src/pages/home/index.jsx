@@ -81,6 +81,14 @@ function Home(){
         .then(res=>{
             console.log(res)
             setStuff(res)
+            const auther=res.status
+            console.log(auther)
+            if(auther==="false"){
+                setTruth(res.status)
+                console.log(`truth=${truth}`)
+                console.log("navigating to login page")
+                navigate(`/login`)
+            }
         })
         .catch(err=>console.log(err))
     },[truth])
