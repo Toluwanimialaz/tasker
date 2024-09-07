@@ -1,5 +1,7 @@
 .close{
     margin-left: 290px;
+    position: absolute;
+    right:10px;
 }
 
 #dater{
