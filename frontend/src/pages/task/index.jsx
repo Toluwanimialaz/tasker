@@ -147,7 +147,7 @@ function Task(){
                                     <td ref={(el)=>refs.current[index]=el} >{element.task}</td>
                                     <td>{myDate}</td>
                                     <td>
-                                        < button  className="close" aria-label='Close' type="button" onClick={()=>submitted(index)}>
+                                        < button  className="del" aria-label='Close' type="button" onClick={()=>submitted(index)}>
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </td>
