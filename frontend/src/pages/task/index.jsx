@@ -68,6 +68,7 @@ function Task(){
             headers:{
                 'Content-Type': 'application/json'
             },
+            credentials: 'include',
             body:JSON.stringify({delTask:thatTask})
         })
         const arr=renderr
