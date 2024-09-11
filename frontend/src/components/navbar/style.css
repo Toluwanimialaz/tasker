@@ -1,4 +1,14 @@
 .nav{
     height: 140px;
-    border:5tpx solid black
+    border:5px solid black
+}
+
+.put{
+    position: absolute;
+    left:30em;
+    margin-left:200em
+}
+
+.cut{
+    width:30%;
 }

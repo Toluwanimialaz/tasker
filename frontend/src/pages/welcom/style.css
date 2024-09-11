@@ -1,19 +1,20 @@
 .bla{
     background-color: rgb(235, 229, 229);
-    height: 600px;
-    width:1200px;
+    height: 90vh;
+    width:110vw;
     color:black;
 }
 
 .google{
+    width:5%;
     position: absolute;
-    left:180px !important;
-    top:350px !important;
+    bottom:20%;
+    left:13%
 }
 
-.submit-btn {
+.boot {
     display: block;
-    width: 100%;
+    width: 6rem;
     padding: 14px;
     background-color: #472dbb;
     color: #fff;
@@ -23,26 +24,29 @@
     position: absolute;
     left:260px;
     bottom:-1px;
-  }
+}
 
-  .submit-btn:hover {
+.boot:hover {
     background-color: #4565a0;
-  }
+}
 
-.header{
+.manage{
     width:40%;
-    height:250px;
-    position: absolute;
-    top:80px;
-    left:180px;
+    height:20vh;
+    position: relative;
+    top:3em;
+    left:7%;
 }
 
 .words{
     position: absolute;
-    top:280px;
-    left:180px;
-    width:500px;
+    top:22em;
+    left:15%;
+    width:80vw;
     text-align: left;
     font-weight: 600;
 }
 
+.signUp{
+    width:5rem;
+}

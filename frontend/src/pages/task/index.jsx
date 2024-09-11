@@ -23,7 +23,7 @@ function Task(){
     useEffect(()=>{
         async function get(){
             try{
-                const data=await fetch("https://task-backend-7r94.onrender.com/api/form/task",{
+                const data=await fetch(`${apiURL}/api/form/task`,{
                     method: 'GET',
                     credentials: 'include', // Ensures cookies are sent in the request
                     headers: {
@@ -63,7 +63,7 @@ function Task(){
         const thatTask=myTask.innerHTML;
      
         console.log(thatTask)
-        const response=await fetch("https://task-backend-7r94.onrender.com/api/form/task",{
+        const response=await fetch(`${apiURL}/api/form/task`,{
             method:"POST",
             headers:{
                 'Content-Type': 'application/json'

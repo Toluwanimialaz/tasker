@@ -11,22 +11,22 @@ function Welcom(){
     return(
         <div className='bla'>
             <div>
-                <h1 className='header'>Managing your life just got easier with My task manager</h1>
+                <h1 className='manage'>Managing your life just got easier with My task manager</h1>
                 <p className='words'>Signup with the buttons below and make your life easier</p>
                 <div className='google'>
                     <Link to={`${apiURL}/api/auth/google`}>
                         <GoogleButtonn className='signUp'/>
                     </Link>
                     <Link to="/signup">
-                        <button className='submit-btn' type='submit'>Sign up</button>
+                        <button className='boot' type='submit'>Sign up</button>
                     </Link>
                 </div>
             </div>
-            <Lottie onComplete={()=>{
+            <Lottie className='clip' onComplete={()=>{
                 aniRef.current?.play();
                 aniRef.current?.goToAndPlay(1,true);
                 console.log("complete");
-            }} lottieRef={aniRef} animationData={animation} loop={false} style={{height:"350px",position:"absolute",top:"100px",right:"150px"}}/>
+            }} lottieRef={aniRef} animationData={animation} loop={false} style={{height:"50%",width:"38vw",position:"relative",top:"-20%",right:"-55%"}}/>
         </div>
 
     )

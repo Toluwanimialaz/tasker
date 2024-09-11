@@ -41,7 +41,7 @@ function Home(){
         const dataa=new FormData(w)
         const textData=new URLSearchParams(dataa)
         console.log(...dataa)
-        const response=await fetch('https://task-backend-7r94.onrender.com/api/form',{
+        const response=await fetch(`${apiURL}/api/form`,{
             method:"POST",
             headers:{
                 'Content-Type': 'application/json'
@@ -71,7 +71,7 @@ function Home(){
 
 
     useEffect(()=>{
-        fetch('https://task-backend-7r94.onrender.com/api', {
+        fetch(`${apiURL}/api`, {
             method: 'GET',
             credentials: 'include', // Ensures cookies are sent in the request
             headers: {
@@ -100,7 +100,7 @@ function Home(){
                 console.log("complete");
                 aniRef.current?.goToAndPlay(1,true);
                 aniRef.current?.play()
-            }} lottieRef={aniRef} animationData={animationData} loop={false} style={{height:"150px",position:"absolute",top:"0px",right:"550px"}}/>
+            }} lottieRef={aniRef} animationData={animationData} loop={false} style={{height:"25%",position:"absolute",top:"0",margin:"0% 40%"}}/>
             <Navbar className='nav'  name={stuff.names}/>
             <div className='title' style={{position:"absolute",top:'330px',width:'90%'}}>
                 <motion.div

@@ -6,40 +6,18 @@ function Navbar(props){
         <div>
             <div className='container'>
                 <ul className="nav nav-pills nav-fill bg-light">
-                    <li className="nav-item">
+                    <li className="nav-item-cut">
                         {props.name?(<a className="nav-link active" href="#">{props.name}</a>):(<a className="nav-link active" href="#">User</a>)}
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="#"></a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="#"></a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="#"></a>
                     </li>
-                    <li className="nav-item">
-                        <a className="nav-link" href="#"></a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link" href="#"></a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link" href="#"></a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link" href="#"></a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link" href="#"></a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link" href="#"></a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link" href="#"></a>
-                    </li>
-                    <li className="nav-item">
+
+
+                    <li className="nav-item-put">
                         <form action={`${apiURL}/logout?_method=DELETE`}  method="POST">
                             <button type="submit">Log out</button>
                         </form>
