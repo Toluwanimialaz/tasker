@@ -55,7 +55,7 @@ function processor(passport,getUser){
         {
             clientID:process.env.CLIENT_ID,
             clientSecret:process.env.CLIENT_SECRET,
-            callbackURL:'https://task-backend-7r94.onrender.com/api/auth/google/callback'
+            callbackURL:'https://tasker-backend-mu.vercel.app/auth/google/callback'
         },authenticate
     ))
     passport.serializeUser((user,done)=>done(null,user.id))
