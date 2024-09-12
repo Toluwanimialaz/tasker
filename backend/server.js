@@ -2,8 +2,10 @@ if(process.env.NODE_ENV!=="production"){
     console.log("ready to go in testing")
     require('dotenv').config()
 }
+
+
 const reactURL=process.env.REACT_URL
-const allowedOrigins=['https://tasker-client-beige.vercel.app','https://tasker-client-beige.vercel.app/login','https://tasker-client-beige.vercel.app/home']
+const allowedOrigins=[reactURL,`${reactURL}/`,`${reactURL}/home`]
 
 const cors=require('cors')
 const corsOptions = {
@@ -14,10 +16,10 @@ const corsOptions = {
           callback(new Error('Not allowed by CORS'));
         }
     },
-    methods: 'GET,POST,DELETE,OPTIONS', // Only allow specific methods
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Only allow specific methods
     allowedHeaders: ['Content-Type', 'Authorization','X-Requested-With'], // Allow specific headers
     credentials: true, // Allow cookies to be sent
-    optionsSuccessStatus: 200
+    optionsSuccessStatus: 204
 };
 
 const bodyParser=require('body-parser')
@@ -25,7 +27,8 @@ const express= require('express');
 const pathh=require('path')
 const collection=require('./config')
 const app=express();
-const port=3050;
+app.set('trust proxy', 1);
+const port=process.env.PORT || 3000;
 const initializePassport=require('./config-passport');
 const passport=require('passport');
 const flash=require('express-flash')
@@ -36,8 +39,13 @@ const mongoStore=require('connect-mongo');
 const {bcrypt,bcryptVerify}=require('hash-wasm');
 const { Collection } = require('mongoose');
 
-app.use(bodyParser.json())
+
+initializePassport(
+    passport,
+    async(username)=>await collection.findOne({name:username})
+)
 app.use(cors(corsOptions))
+app.use(bodyParser.json())
 app.set('views', pathh.join(__dirname, 'views'));
 app.set("view engine","ejs")
 app.use(express.static("public"))
@@ -50,10 +58,11 @@ app.use(session({
     resave:false,
     saveUninitialized:false,
     cookie: {
-       maxAge:1000*60*60,
-       secure: true, // Ensure this is true if you're using HTTPS
-       sameSite: 'none', // Allow cross-origin cookies
-       domain: 'https://tasker-client-beige.vercel.app'
+       maxAge:1000*60*60*60,
+       secure: process.env.NODE_ENV === 'production'?true:false,
+       sameSite:'None',
+       httpOnly:process.env.NODE_ENV === 'production'?true:false,
+
     }
 }))
 app.use(passport.initialize())
@@ -86,10 +95,6 @@ app.use((req, res, next) => {
 
 
 
-initializePassport(
-    passport,
-    async(username)=>await collection.findOne({name:username})
-)
 
 function auhenticated(req,res,next){
     if(req.isAuthenticated()){
@@ -109,22 +114,20 @@ function notAuthenticated(req,res,next){
 }
 
 app.get("/",(req,res)=>{
-    if(req.user){
-        res.status(200).json({"existing":`${req.user} exits`,"working":"successs"}) 
-    }else{
-        res.json({"existing":"user doesnt exist"})
-
-    }
+    res.status(200).json({"working":"successs"})
 })
 
 app.get("/api",(req,res)=>{
-    try{
-        res.json({names:req.user.name})
-    }catch(error){
-        console.log(`error=${error}`)
-        res.status(500).json({error:"internal serverrr error"})
+    if(req.isAuthenticated()){
+        res.json({names:req.user.name,status:""})
+    }else{
+        res.auth="false";
+        const truth=res.auth;
+        console.log(truth)
+        res.json({names:"",status:truth})
     }
 })
+
 
 app.post("/api/form",async(req,res)=>{
     const date=req.body.date
@@ -186,7 +189,7 @@ app.post("/signup",notAuthenticated,async(req,res)=>{
         console.log(user.password)
         const userData=await collection.insertMany(user)
         console.log(userData)
-        res.redirect('https://tasker-client-beige.vercel.app/login')
+        res.redirect(`${reactURL}/login`)
     }
 })
 
@@ -194,8 +197,8 @@ app.post("/signup",notAuthenticated,async(req,res)=>{
 
 
 app.post("/login",notAuthenticated,passport.authenticate('local',{
-    successRedirect:'https://tasker-client-beige.vercel.app/home' ,
-    failureRedirect:'https://tasker-client-beige.vercel.app',
+    successRedirect:`${reactURL}/home` ,
+    failureRedirect:`${reactURL}`,
     failureFlash:true
 }))
 
@@ -221,7 +224,9 @@ app.use("/oauth",oauth)
 app.use("/api",google)
 
 
-
+app.listen(port, '0.0.0.0', () => {
+    console.log(`Server is running on port ${port}`);
+});
 
 
 

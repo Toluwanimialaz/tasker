@@ -38,12 +38,12 @@ router.get("/task",async (req,res)=>{
             console.log(error)
         }
     
-        res.json({current:arr,expired:ExpiredArr})
+        res.json({status:"",current:arr,expired:ExpiredArr})
     }else{
         res.auth="false";
         const truth=res.auth;
         console.log(truth)
-        res.json({status:truth})
+        res.json({current:"",expired:"",status:truth})
     }
     
 })
