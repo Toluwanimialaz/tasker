@@ -1,0 +1,112 @@
+
+
+POST http://localhost:3050/signup
+Content-Type: application/json
+
+{
+  "username": "clownass",
+  "email": "toluwanimiala28@gmail.com",
+  "password": "1234"
+}
+
+###
+
+POST http://localhost:3050/verify
+Content-Type: application/json
+
+{
+  "Otp": "879700",
+  "email": "toluwanimiala28@gmail.com"
+}
+
+
+###
+POST http://localhost:3050/request-code
+Content-Type: application/json
+
+{
+  "email": "toluwanmiala29@gmail.com"
+}
+
+###
+
+POST http://localhost:3050/login
+Content-Type: application/json
+
+{
+  "email":"toluwanimiala28@gmail.com",
+  "password":"1234"
+}
+
+###
+GET http://localhost:3050/test
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRvbHV3YW5pbWlhbGExOEBnbWFpbC5jb20iLCJuYW1lIjoiSmlsbCBEYW5lIiwiaWF0IjoxNzQzOTU0NDU1LCJleHAiOjE3NDM5NTQ3NTV9.2GUPl3TIVvbUo_sQ9RhJi8lLsbCgT6vUWeqPP-b_omM
+
+###
+POST http://localhost:3100/date
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRvbHV3YW5pbWlhbGExOEBnbWFpbC5jb20iLCJuYW1lIjoiSmlsbCBEYW5lIiwiaWF0IjoxNzQzOTU0NDU1LCJleHAiOjE3NDM5NTQ3NTV9.2GUPl3TIVvbUo_sQ9RhJi8lLsbCgT6vUWeqPP-b_omM
+Content-Type: application/json
+
+{
+  "date":"12-30-98"
+}
+
+
+
+###
+POST http://localhost:3050/token
+Content-Type: application/json
+
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRvbHV3YW5taWFsYTI5QGdtYWlsLmNvbSIsIm5hbWUiOiJKaW1teSIsImlhdCI6MTc0NzI4Mzg2N30.USh0ZhZoozdf0c4ygaRExTnl4tfbABoYyzExzT-GTDE"
+}
+
+###
+GET http://localhost:3100/ip
+
+###
+GET http://localhost:3050/request
+
+###
+
+POST http://localhost:3050/api/form
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRvbHV3YW5pbWlhbGEyOEBnbWFpbC5jb20iLCJuYW1lIjoiY2xvd25hc3MiLCJpYXQiOjE3NTU4NTMwNzUsImV4cCI6MTc1NTg1NDI3NX0.4gxvhc5JW55XHlo0F3YKEgSrF1iu_O86FwoFPhO4ePg
+Content-Type: application/json
+
+{
+  "date":"2024-10-20T06:10:00.000Z",
+  "type":"oneTime",
+  "description":"1st thing to do"
+}
+
+###
+
+POST http://localhost:3050/api/form
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRvbHV3YW5pbWlhbGEyOEBnbWFpbC5jb20iLCJuYW1lIjoiY2xvd25hc3MiLCJpYXQiOjE3NTU4NTMwNzUsImV4cCI6MTc1NTg1NDI3NX0.4gxvhc5JW55XHlo0F3YKEgSrF1iu_O86FwoFPhO4ePg
+
+{
+  "date":"2025-09-20T06:10:00.000Z",
+  "type":"period",
+  "periodType":"daily",
+  "daysRepeated":["sat"],
+  "description":"first thing to do"
+}
+
+###
+
+POST http://localhost:3050/api/form/task
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRvbHV3YW5pbWlhbGEyOEBnbWFpbC5jb20iLCJuYW1lIjoiY2xvd25hc3MiLCJpYXQiOjE3NTU4NTMwNzUsImV4cCI6MTc1NTg1NDI3NX0.4gxvhc5JW55XHlo0F3YKEgSrF1iu_O86FwoFPhO4ePg
+Content-Type: application/json
+
+{
+  "delTask":"some stuff im gonna do"
+}
+
+###
+GET http://localhost:3050/api/form/task
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRvbHV3YW5pbWlhbGEyOEBnbWFpbC5jb20iLCJuYW1lIjoiY2xvd25hc3MiLCJpYXQiOjE3NTQ4NTA0MzgsImV4cCI6MTc1NDg1MTYzOH0.hhOb6vgJ2Lbc3OD-4d5w_YT_aImSg9l9mWiRS-vHJMQ
+
+
+
+
+
