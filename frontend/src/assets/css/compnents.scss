@@ -1,0 +1,79 @@
+.description-board{
+    border:1px solid rgb(216, 213, 213);
+    border-radius: 10px;
+    min-height: 200px;
+    width: min(90%, 1000px);
+    padding:10px 10px;
+}
+
+.editable {
+    width: 100%;
+    min-height: 40px;
+    
+    border-radius: 8px;
+    white-space: pre-wrap;     /* allows wrapping */
+    word-wrap: break-word;     /* ensures long words wrap */
+    outline: none;
+    border:none;
+}
+
+.editable:empty::before {
+    content: attr(data-placeholder);
+    color: #999;
+    pointer-events: none;
+}
+
+
+.topic-input{
+    font-size: clamp(1rem,calc(0.7vh + 1rem),5rem);
+    font-weight: 500;
+}
+
+.description-input{
+    min-height: 35px;
+    font-size: clamp(0.5rem,calc(0.3vh + 1rem),5rem)
+}
+
+.board-flex{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.editable-content-div{
+    
+}
+
+.editable-content-boxes{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 50px;
+    gap:10px 5px;
+    flex-wrap: wrap;   
+}
+
+.editable-content-box{
+    border:1px solid gray;
+    border-radius: 5px;
+    height:35px;
+    width:100px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+
+}
+
+.editable-content-box:hover{
+    background-color: gainsboro;
+}
+
+.buttons-div{
+    display: flex;
+    flex-direction: row;
+    align-items:end;
+    justify-content: flex-end;
+    min-height: 50px;
+}
